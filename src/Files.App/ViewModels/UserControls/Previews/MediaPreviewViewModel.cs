@@ -18,6 +18,13 @@ namespace Files.App.ViewModels.Previews
 			private set => SetProperty(ref source, value);
 		}
 
+		private bool isFullMode;
+		public bool IsFullMode
+		{
+			get => isFullMode;
+			set => SetProperty(ref isFullMode, value);
+		}
+
 		public MediaPreviewViewModel(ListedItem item) : base(item) { }
 
 		public void TogglePlayback()

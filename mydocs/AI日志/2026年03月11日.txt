@@ -1,0 +1,8 @@
+1.这里每次都要下载windows_x64.zip文件，不能改成从本地的文件拷贝吗？
+    正在从“https://github.com/files-community/Satori/releases/latest/download/windows_x64.zip”下载到“D:\GitHubProjects\Files\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\SatoriPackage\20260311\windows_x64.zip”(10251227 字节)。
+
+2.下载好的文件在D:\GitHubProjects\Files\windows_x64.zip，你给我拷贝一份到d:\GitHubProjects\Files\src\SatoriPackage\windows_x64.zip
+
+3.《InfoPane.xaml》文件有错误：Unknown type 'BooleanToVisibilityConverter' in XML namespace 'using:CommunityToolkit.WinUI.Converters' `d:\GitHubProjects\Files\src\Files.App\UserControls\Pane\InfoPane.xaml`
+
+4.

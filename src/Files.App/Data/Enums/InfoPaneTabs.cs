@@ -1,4 +1,4 @@
-﻿// Copyright (c) Files Community
+// Copyright (c) Files Community
 // Licensed under the MIT License.
 
 namespace Files.App.Data.Enums
@@ -17,5 +17,10 @@ namespace Files.App.Data.Enums
 		/// Preview tab.
 		/// </summary>
 		Preview,
+
+		/// <summary>
+		/// Play tab.
+		/// </summary>
+		Play,
 	}
 }

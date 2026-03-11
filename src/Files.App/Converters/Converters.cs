@@ -264,5 +264,18 @@ namespace Files.App.Converters
 			return new NotSupportedException();
 		}
 	}
+
+	internal sealed partial class BooleanToVisibilityConverter : ValueConverter<bool, Visibility>
+	{
+		protected override Visibility Convert(bool value, object? parameter, string? language)
+		{
+			return value ? Visibility.Visible : Visibility.Collapsed;
+		}
+
+		protected override bool ConvertBack(Visibility value, object? parameter, string? language)
+		{
+			return value == Visibility.Visible;
+		}
+	}
 }
 

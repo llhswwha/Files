@@ -6,16 +6,27 @@
     <SatoriDownloadedThisRun>false</SatoriDownloadedThisRun>
     <UseSatoriCoreLibOverride Condition="'$(UseSatoriCoreLibOverride)' == ''">true</UseSatoriCoreLibOverride>
     <UseSatoriNativeRuntimeOverride Condition="'$(UseSatoriNativeRuntimeOverride)' == ''">true</UseSatoriNativeRuntimeOverride>
+    <SatoriLocalPath Condition="'$(SatoriLocalPath)' == ''">$(MSBuildThisFileDirectory)SatoriPackage\$(SatoriArchiveName)</SatoriLocalPath>
     <UseSatoriCoreLibOverride Condition="'$(EnableMsixTooling)' == 'true'">false</UseSatoriCoreLibOverride>
     <UseSatoriNativeRuntimeOverride Condition="'$(EnableMsixTooling)' == 'true'">false</UseSatoriNativeRuntimeOverride>
   </PropertyGroup>
   <Target Name="FetchSatori" AfterTargets="ResolveRuntimePackAssets">
-    <!-- Skip download if the archive already exists -->
+    <!-- Skip download if the archive already exists in IntermediateOutputPath -->
     <ItemGroup Condition="Exists('$(SatoriArchivePath)')">
       <SatoriArchive Include="$(SatoriArchivePath)" />
     </ItemGroup>
 
-    <!-- Download if the archive does not exist -->
+    <!-- Copy from local path if exists and not already in IntermediateOutputPath -->
+    <Copy
+        SourceFiles="$(SatoriLocalPath)"
+        DestinationFiles="$(SatoriArchivePath)"
+        Condition="Exists('$(SatoriLocalPath)') And !Exists('$(SatoriArchivePath)')" />
+
+    <ItemGroup Condition="Exists('$(SatoriArchivePath)') And '@(SatoriArchive)' == ''">
+      <SatoriArchive Include="$(SatoriArchivePath)" />
+    </ItemGroup>
+
+    <!-- Download if the archive does not exist anywhere -->
     <PropertyGroup Condition="!Exists('$(SatoriArchivePath)')">
       <SatoriDownloadedThisRun>true</SatoriDownloadedThisRun>
     </PropertyGroup>

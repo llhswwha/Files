@@ -92,5 +92,23 @@ namespace Files.App.UserControls
 
 			contentPageContext.ShellPage?.SubmitSearch(FolderSearch.FormatTagQuery(tagName));
 		}
+
+		private void DetailsButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ViewModel is not null)
+				ViewModel.SelectedTab = Data.Enums.InfoPaneTabs.Details;
+		}
+
+		private void PreviewButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ViewModel is not null)
+				ViewModel.SelectedTab = Data.Enums.InfoPaneTabs.Preview;
+		}
+
+		private void PlayButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ViewModel is not null)
+				ViewModel.SelectedTab = Data.Enums.InfoPaneTabs.Play;
+		}
 	}
 }

@@ -2,5 +2,31 @@
 
 2.这个项目有压缩视频文件的功能吗？
 
-3.我发现视频预览功能只能播放几秒，我需要添加视频播放功能和视频编辑功能。
-    
+3.在视频预览功能旁边增加一个简单的播放视频的功能，类似视频预览功能，只是能够播放完整的视频。（或者直接修改预览功能，让预览功能能够播放完整的视频）。先不用修改代码，整理一个md文档修改方案给我看看。
+
+4.下载好的文件在D:\GitHubProjects\Files\windows_x64.zip，你给我拷贝一份到d:\GitHubProjects\Files\src\SatoriPackage\windows_x64.zip
+
+5.《InfoPane.xaml》文件有错误：Unknown type 'BooleanToVisibilityConverter' in XML namespace 'using:CommunityToolkit.WinUI.Converters'
+
+6.`d:\GitHubProjects\Files\src\Files.App\Converters\EnumToBoolConverter.cs` 没有实现代码，报错了。
+
+7.还有报错：“Binding”未包含“DoNothing”的定义
+
+8.在视频预览功能和视频播放功能之间切换时会报错。
+严重性	代码	说明	项目	文件	行	抑制状态	详细信息
+错误(活动)	CS0246	未能找到类型或命名空间名“ICommandManager”(是否缺少 using 指令或程序集引用?)	Files.App	D:\GitHubProjects\Files\src\Files.App\Helpers\Application\AppLifecycleHelper.cs	165		
+严重性	代码	说明	项目	文件	行	抑制状态	详细信息
+错误(活动)	CS0311	类型“Files.App.Data.Commands.CommandManager”不能用作泛型类型或方法“ServiceCollectionServiceExtensions.AddSingleton<TService, TImplementation>(IServiceCollection)”中的类型参数“TImplementation”。没有从“Files.App.Data.Commands.CommandManager”到“ICommandManager”的隐式引用转换。	Files.App	D:\GitHubProjects\Files\src\Files.App\Helpers\Application\AppLifecycleHelper.cs	246		
+严重性	代码	说明	项目	文件	行	抑制状态	详细信息
+错误(活动)	CS0246	未能找到类型或命名空间名“ICommandManager”(是否缺少 using 指令或程序集引用?)	Files.App	D:\GitHubProjects\Files\src\Files.App\Helpers\Application\AppLifecycleHelper.cs	246	
+
+9.在视频预览功能和视频播放功能之间切换时会报错。
+   在 System.Runtime.CompilerServices.CastHelpers.ThrowInvalidCastExceptionInternal(Void* fromTypeHnd, Void* toTypeHnd)
+   在 System.Runtime.CompilerServices.CastHelpers.ThrowInvalidCastExceptionInternal(Void* fromTypeHnd, Void* toTypeHnd)
+   在 System.Runtime.CompilerServices.CastHelpers.ThrowInvalidCastException(Object fromType, Void* toTypeHnd)
+   在 System.Runtime.CompilerServices.CastHelpers.Unbox_Helper(MethodTable* pMT1, Object obj)
+   在 Files.App.UserControls.InfoPane.InfoPane_obj1_Bindings.UpdateTwoWay_55_IsChecked() 在 D:\GitHubProjects\Files\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\Pane\InfoPane.g.cs 中: 第 1823 行
+   在 Files.App.UserControls.InfoPane.InfoPane_obj1_Bindings.InfoPane_obj1_BindingsTracking.<RegisterTwoWayListener_55>b__30_0(DependencyObject sender, DependencyProperty prop) 在 D:\GitHubProjects\Files\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\Pane\InfoPane.g.cs 中: 第 2364 行
+   在 ABI.Microsoft.UI.Xaml.DependencyPropertyChangedCallback.Do_Abi_Invoke(IntPtr thisPtr, IntPtr sender, IntPtr dp)
+
+10.

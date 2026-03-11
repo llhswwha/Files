@@ -55,6 +55,8 @@ namespace Files.App.ViewModels.UserControls
 
 					if (value is not null)
 						value.PropertyChanged += SelectedItem_PropertyChanged;
+
+					IsMediaFile = value is not null && !value.IsFolder && (FileExtensionHelpers.IsAudioFile(value.FileExtension) || FileExtensionHelpers.IsVideoFile(value.FileExtension));
 				}
 			}
 		}
@@ -137,6 +139,13 @@ namespace Files.App.ViewModels.UserControls
 			PreviewPaneState is PreviewPaneStates.PreviewAndDetailsAvailable;
 
 		public ObservableCollection<TagsListItem> Items { get; } = [];
+
+		private bool isMediaFile;
+		public bool IsMediaFile
+		{
+			get => isMediaFile;
+			set => SetProperty(ref isMediaFile, value);
+		}
 
 		public InfoPaneViewModel()
 		{
@@ -285,7 +294,10 @@ namespace Files.App.ViewModels.UserControls
 				contentPageContext.PageType != ContentPageTypes.ZipFolder &&
 				(FileExtensionHelpers.IsAudioFile(ext) || FileExtensionHelpers.IsVideoFile(ext)))
 			{
-				var model = new MediaPreviewViewModel(item);
+				var model = new MediaPreviewViewModel(item)
+				{
+					IsFullMode = SelectedTab == InfoPaneTabs.Play
+				};
 				await model.LoadAsync();
 
 				return new MediaPreview(model);
@@ -371,7 +383,11 @@ namespace Files.App.ViewModels.UserControls
 				PreviewPaneContent = null;
 				return;
 			}
-			else if (SelectedItem is not null && contentPageContext.SelectedItems.Count == 1)
+
+			// Clear the current content to ensure the previous control is unloaded and its resources (like MediaPlayer) are released.
+			PreviewPaneContent = null;
+
+			if (SelectedItem is not null && contentPageContext.SelectedItems.Count == 1)
 			{
 				SelectedItem?.FileDetails?.Clear();
 
@@ -380,6 +396,7 @@ namespace Files.App.ViewModels.UserControls
 					PreviewPaneState = PreviewPaneStates.LoadingPreview;
 
 					if (SelectedTab == InfoPaneTabs.Preview ||
+						SelectedTab == InfoPaneTabs.Play ||
 						SelectedItem?.PrimaryItemAttribute == StorageItemTypes.Folder)
 					{
 						loadCancellationTokenSource = new CancellationTokenSource();

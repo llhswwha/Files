@@ -1,4 +1,4 @@
-﻿<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
+<!--  Copyright (c) Files Community. Licensed under the MIT License.  -->
 <UserControl
 	x:Class="Files.App.UserControls.InfoPane"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -28,6 +28,7 @@
 
 				<ResourceDictionary>
 					<converters:BoolNegationConverter x:Key="BoolNegationConverter" />
+					<local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 					<local:EnumToBoolConverter x:Key="EnumToBoolConverter" />
 
 					<Style x:Key="Local.RadioButtonStyle" TargetType="RadioButton">
@@ -166,16 +167,23 @@
 			Orientation="Horizontal">
 			<!--  Details  -->
 			<RadioButton
-				Command="{x:Bind Commands.ToggleDetailsPane, Mode=OneWay}"
+				Click="DetailsButton_Click"
 				Content="{helpers:ResourceString Name=Details}"
 				IsChecked="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Details, Mode=OneWay}"
 				Style="{StaticResource Local.RadioButtonStyle}" />
 			<!--  Preview  -->
 			<RadioButton
-				Command="{x:Bind Commands.TogglePreviewPane, Mode=OneWay}"
+				Click="PreviewButton_Click"
 				Content="{helpers:ResourceString Name=Preview}"
 				IsChecked="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Preview, Mode=OneWay}"
 				Style="{StaticResource Local.RadioButtonStyle}" />
+			<!--  Play  -->
+			<RadioButton
+				Click="PlayButton_Click"
+				Content="播放"
+				IsChecked="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Play, Mode=OneWay}"
+				Style="{StaticResource Local.RadioButtonStyle}"
+				Visibility="{x:Bind ViewModel.IsMediaFile, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" />
 		</StackPanel>
 
 		<Grid
