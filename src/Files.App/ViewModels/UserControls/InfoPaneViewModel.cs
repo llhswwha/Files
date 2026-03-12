@@ -89,6 +89,10 @@ namespace Files.App.ViewModels.UserControls
 			}
 		}
 
+		public bool IsNotPlayTab => SelectedTab != InfoPaneTabs.Play;
+
+		public bool IsNotDetailsTab => SelectedTab != InfoPaneTabs.Details;
+
 		/// <summary>
 		/// Enum indicating if details/preview are available
 		/// </summary>
@@ -475,6 +479,8 @@ namespace Files.App.ViewModels.UserControls
 			if (e.PropertyName is nameof(infoPaneSettingsService.SelectedTab))
 			{
 				OnPropertyChanged(nameof(SelectedTab));
+				OnPropertyChanged(nameof(IsNotPlayTab));
+				OnPropertyChanged(nameof(IsNotDetailsTab));
 
 				// The preview will need refreshing as the file details won't be accurate
 				await UpdateSelectedItemPreviewAsync();

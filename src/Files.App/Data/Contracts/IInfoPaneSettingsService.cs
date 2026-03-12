@@ -1,4 +1,4 @@
-﻿// Copyright (c) Files Community
+// Copyright (c) Files Community
 // Licensed under the MIT License.
 
 namespace Files.App.Data.Contracts
@@ -29,5 +29,15 @@ namespace Files.App.Data.Contracts
 		/// Gets or sets a value indicating the selected tab in the Info Pane.
 		/// </summary>
 		InfoPaneTabs SelectedTab { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the LLPlayer executable.
+		/// </summary>
+		string LLPlayerPath { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the MpvNet executable.
+		/// </summary>
+		string MpvNetPath { get; set; }
 	}
 }

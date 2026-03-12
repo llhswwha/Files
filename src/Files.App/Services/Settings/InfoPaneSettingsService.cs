@@ -35,6 +35,18 @@ namespace Files.App.Services.Settings
 			set => Set(value);
 		}
 
+		public string LLPlayerPath
+		{
+			get => Get(@"D:\GitHubProjects\Files\Plugins\LLPlayer\LLPlayer\bin\Debug\net10.0-windows10.0.18362.0\LLPlayer.exe");
+			set => Set(value);
+		}
+
+		public string MpvNetPath
+		{
+			get => Get(@"D:\GitHubProjects\Files\Plugins\mpv.net\src\MpvNet.Windows\bin\Debug\mpvnet.exe");
+			set => Set(value);
+		}
+
 		public InfoPaneSettingsService(ISettingsSharingContext settingsSharingContext)
 		{
 			RegisterSettingsContext(settingsSharingContext);

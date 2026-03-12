@@ -4,11 +4,15 @@
 using Files.App.ViewModels.Properties;
 using Microsoft.UI.Xaml;
 using Windows.Media.Core;
+using CommunityToolkit.Mvvm.Input;
+using System.Diagnostics;
 
 namespace Files.App.ViewModels.Previews
 {
 	public sealed partial class MediaPreviewViewModel : BasePreviewModel
 	{
+		private IUserSettingsService UserSettingsService { get; } = Ioc.Default.GetRequiredService<IUserSettingsService>();
+
 		public event EventHandler TogglePlaybackRequested;
 
 		private MediaSource source;
@@ -25,7 +29,57 @@ namespace Files.App.ViewModels.Previews
 			set => SetProperty(ref isFullMode, value);
 		}
 
-		public MediaPreviewViewModel(ListedItem item) : base(item) { }
+		public IRelayCommand OpenInLLPlayerCommand { get; }
+
+		public IRelayCommand OpenInMpvNetCommand { get; }
+
+		public MediaPreviewViewModel(ListedItem item) : base(item)
+		{
+			OpenInLLPlayerCommand = new RelayCommand(OpenInLLPlayer);
+			OpenInMpvNetCommand = new RelayCommand(OpenInMpvNet);
+		}
+
+		private void OpenInLLPlayer()
+		{
+			var path = UserSettingsService.InfoPaneSettingsService.LLPlayerPath;
+			if (string.IsNullOrEmpty(path))
+				return;
+
+			try
+			{
+				Process.Start(new ProcessStartInfo
+				{
+					FileName = path,
+					Arguments = $"\"{Item.ItemPath}\"",
+					UseShellExecute = true
+				});
+			}
+			catch (Exception ex)
+			{
+				// Log or show error
+			}
+		}
+
+		private void OpenInMpvNet()
+		{
+			var path = UserSettingsService.InfoPaneSettingsService.MpvNetPath;
+			if (string.IsNullOrEmpty(path))
+				return;
+
+			try
+			{
+				Process.Start(new ProcessStartInfo
+				{
+					FileName = path,
+					Arguments = $"\"{Item.ItemPath}\"",
+					UseShellExecute = true
+				});
+			}
+			catch (Exception ex)
+			{
+				// Log or show error
+			}
+		}
 
 		public void TogglePlayback()
 			=> TogglePlaybackRequested?.Invoke(this, null);

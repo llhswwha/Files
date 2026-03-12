@@ -164,7 +164,7 @@
 			BorderThickness="1"
 			CornerRadius="4"
 			Orientation="Horizontal"
-			Visibility="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Play, Mode=OneWay, Converter={StaticResource VisibilityInvertConverter}}">
+			Visibility="{x:Bind ViewModel.IsNotPlayTab, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
 			<!--  Details  -->
 			<RadioButton
 				Click="DetailsButton_Click"
@@ -194,7 +194,7 @@
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
 			AutomationProperties.Name="{helpers:ResourceString Name=PreviewPaneFilePreview/AutomationProperties/Name}"
-			Visibility="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Details, Mode=OneWay, Converter={StaticResource VisibilityInvertConverter}}">
+			Visibility="{x:Bind ViewModel.IsNotDetailsTab, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
