@@ -29,4 +29,15 @@
    在 Files.App.UserControls.InfoPane.InfoPane_obj1_Bindings.InfoPane_obj1_BindingsTracking.<RegisterTwoWayListener_55>b__30_0(DependencyObject sender, DependencyProperty prop) 在 D:\GitHubProjects\Files\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\Pane\InfoPane.g.cs 中: 第 2364 行
    在 ABI.Microsoft.UI.Xaml.DependencyPropertyChangedCallback.Do_Abi_Invoke(IntPtr thisPtr, IntPtr sender, IntPtr dp)
 
-10.
+10.在视频预览功能和视频播放功能之间切换时会报错：Unable to cast object of type 'WinRT.IInspectable' to type 'Files.App.Data.Enums.InfoPaneTabs'.
+   在 System.Runtime.CompilerServices.CastHelpers.ThrowInvalidCastExceptionInternal(Void* fromTypeHnd, Void* toTypeHnd)
+   在 System.Runtime.CompilerServices.CastHelpers.ThrowInvalidCastExceptionInternal(Void* fromTypeHnd, Void* toTypeHnd)
+   在 System.Runtime.CompilerServices.CastHelpers.ThrowInvalidCastException(Object fromType, Void* toTypeHnd)
+   在 System.Runtime.CompilerServices.CastHelpers.Unbox_Helper(MethodTable* pMT1, Object obj)
+   在 Files.App.UserControls.InfoPane.InfoPane_obj1_Bindings.UpdateTwoWay_55_IsChecked() 在 D:\GitHubProjects\Files\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\Pane\InfoPane.g.cs 中: 第 1823 行
+   在 Files.App.UserControls.InfoPane.InfoPane_obj1_Bindings.InfoPane_obj1_BindingsTracking.<RegisterTwoWayListener_55>b__30_0(DependencyObject sender, DependencyProperty prop) 在 D:\GitHubProjects\Files\src\Files.App\obj\x64\Debug\net10.0-windows10.0.26100.0\win-x64\UserControls\Pane\InfoPane.g.cs 中: 第 2364 行
+   在 ABI.Microsoft.UI.Xaml.DependencyPropertyChangedCallback.Do_Abi_Invoke(IntPtr thisPtr, IntPtr sender, IntPtr dp)
+
+11.修改小窗口的视频播放布局，参考视频预览小窗口的布局，播放界面要充满，播放控制条要小。
+
+12.我打算集成一个视频播放器到项目中，比如在视频播放小窗口中，点击一个独立播放的按钮，就弹出独立的播放窗口播放视频，当前有2个项目代码LLPlayer（Plugins\LLPlayer）和mpv.net（Plugins\mpv.net），哪个项目适合集成到项目中？还是两个都可以？先写个分析修改方案md文件给我看看。

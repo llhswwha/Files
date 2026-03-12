@@ -277,5 +277,16 @@ namespace Files.App.Converters
 			return value == Visibility.Visible;
 		}
 	}
+
+	internal sealed partial class EnumToVisibilityConverter : ValueConverter<object?, Visibility>
+	{
+		protected override Visibility Convert(object? value, object? parameter, string? language)
+		{
+			if (value == null || parameter == null)
+				return Visibility.Collapsed;
+
+			return value.ToString() == parameter.ToString() ? Visibility.Visible : Visibility.Collapsed;
+		}
+	}
 }
 

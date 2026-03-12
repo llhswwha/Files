@@ -30,6 +30,8 @@
 					<converters:BoolNegationConverter x:Key="BoolNegationConverter" />
 					<local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 					<local:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+					<local:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
+					<local:VisibilityInvertConverter x:Key="VisibilityInvertConverter" />
 
 					<Style x:Key="Local.RadioButtonStyle" TargetType="RadioButton">
 						<Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
@@ -143,19 +145,16 @@
 		CornerRadius="8">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-			<RowDefinition Height="2*" />
-			<RowDefinition x:Name="PropertiesRow" Height="3*" />
+			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*" />
-			<ColumnDefinition x:Name="PropertiesColumn" Width="3*" />
+			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 
 		<!--  Panes  -->
 		<StackPanel
 			Grid.Row="0"
 			Grid.Column="0"
-			Grid.ColumnSpan="2"
 			Margin="12"
 			Padding="-1"
 			HorizontalAlignment="Center"
@@ -164,7 +163,8 @@
 			BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
 			BorderThickness="1"
 			CornerRadius="4"
-			Orientation="Horizontal">
+			Orientation="Horizontal"
+			Visibility="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Play, Mode=OneWay, Converter={StaticResource VisibilityInvertConverter}}">
 			<!--  Details  -->
 			<RadioButton
 				Click="DetailsButton_Click"
@@ -190,21 +190,11 @@
 			x:Name="RootPreviewGrid"
 			Grid.Row="1"
 			Grid.Column="0"
-			Grid.ColumnSpan="2"
-			Margin="8"
+			Margin="0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			AutomationProperties.Name="{helpers:ResourceString Name=PreviewPaneFilePreview/AutomationProperties/Name}">
-			<Grid.ContextFlyout>
-				<MenuFlyout>
-					<MenuFlyoutItem
-						HorizontalAlignment="Stretch"
-						IsEnabled="{x:Bind ViewModel.ShowCloudItemButton, Mode=OneWay}"
-						Tapped="MenuFlyoutItem_Tapped"
-						Text="{helpers:ResourceString Name=PreviewPaneLoadCloudItemButton/Text}"
-						ToolTipService.ToolTip="{helpers:ResourceString Name=PreviewPaneLoadCloudItemButton/ToolTipService/ToolTip}" />
-				</MenuFlyout>
-			</Grid.ContextFlyout>
+			AutomationProperties.Name="{helpers:ResourceString Name=PreviewPaneFilePreview/AutomationProperties/Name}"
+			Visibility="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Details, Mode=OneWay, Converter={StaticResource VisibilityInvertConverter}}">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
@@ -229,11 +219,10 @@
 
 		<ScrollViewer
 			x:Name="RootPropertiesScrollViewer"
-			Grid.Row="2"
+			Grid.Row="1"
 			Grid.Column="0"
-			Grid.ColumnSpan="2"
 			AutomationProperties.Name="{helpers:ResourceString Name=PreviewPaneFileDetails/AutomationProperties/Name}"
-			Visibility="Visible">
+			Visibility="{x:Bind ViewModel.SelectedTab, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter=Details, Mode=OneWay}">
 			<StackPanel Orientation="Vertical">
 				<TextBlock
 					x:Name="DetailsListHeader"
