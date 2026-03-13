@@ -39,5 +39,10 @@ namespace Files.App.Data.Contracts
 		/// Gets or sets the path to the MpvNet executable.
 		/// </summary>
 		string MpvNetPath { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the VideoEditor executable.
+		/// </summary>
+		string VideoEditorPath { get; set; }
 	}
 }

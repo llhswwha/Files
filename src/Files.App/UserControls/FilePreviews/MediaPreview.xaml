@@ -60,6 +60,11 @@
 				Command="{x:Bind ViewModel.OpenInMpvNetCommand}"
 				Content="MpvNet"
 				Style="{StaticResource AccentButtonStyle}" />
+			<Button
+				VerticalAlignment="Center"
+				Command="{x:Bind ViewModel.OpenInVideoEditorCommand}"
+				Content="VideoEditor"
+				Style="{StaticResource AccentButtonStyle}" />
 		</StackPanel>
 	</Grid>
 </UserControl>

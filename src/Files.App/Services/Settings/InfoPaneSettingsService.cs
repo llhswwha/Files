@@ -47,6 +47,12 @@ namespace Files.App.Services.Settings
 			set => Set(value);
 		}
 
+		public string VideoEditorPath
+		{
+			get => Get(@"D:\GitHubProjects\Files\Plugins\VideoEditor\src\VideoEditor.Presentation\bin\Debug\net9.0-windows\VideoEditor.Presentation.exe");
+			set => Set(value);
+		}
+
 		public InfoPaneSettingsService(ISettingsSharingContext settingsSharingContext)
 		{
 			RegisterSettingsContext(settingsSharingContext);

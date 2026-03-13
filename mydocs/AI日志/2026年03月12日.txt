@@ -1,2 +1,5 @@
-1.LLPlayer路径在"D:\GitHubProjects\Files\Plugins\LLPlayer\LLPlayer\bin\Debug\net10.0-windows10.0.18362.0\LLPlayer.exe"
+1.在小的视频播放窗口增加两个按钮LLPlayer和MpvNet，能够分别打开两个播放器，传入当前视频文件。
+LLPlayer路径在"D:\GitHubProjects\Files\Plugins\LLPlayer\LLPlayer\bin\Debug\net10.0-windows10.0.18362.0\LLPlayer.exe"
+MpvNet路径在"D:\GitHubProjects\Files\Plugins\mpv.net\src\MpvNet.Windows\bin\Debug\mpvnet.exe"。
+这两个路径要可以配置的。
 

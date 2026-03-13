@@ -1,0 +1,5 @@
+1.在小的视频播放窗口增加一个按钮VideoPlayer，能够打开视频编辑器，传入当前视频文件的路径。VideoPlayer的路径在
+D:\GitHubProjects\Files\Plugins\VideoEditor\src\VideoEditor.Presentation\bin\Debug\net9.0-windows\VideoEditor.Presentation.exe
+VideoPlayer项目在Plugins\VideoEditor文件夹，你看看VideoPlayer是否支持传入文件路径。另外我需要批量处理一个文件夹中的文件，比如压缩一个文件夹中的所有视频为720P，写个方案实现文档给我看看。先不要改代码。
+
+2.刚才写错了，不是VideoPlayer，是VideoEditor，修改相关的文件。
